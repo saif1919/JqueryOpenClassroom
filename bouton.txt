@@ -1,0 +1,1 @@
+<p>Utilisez la zone de texte pour définir le texte à insérer dans le valeur du bouton, puis cliquer sur <b>OK</b> pour l'afficher dans la partie gauche de la page ou sur <b>Annuler</b> pour annuler l'insertion du bouton</p>

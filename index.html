@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        margin: 0;
+      }
+      #gauche {
+        float: left;
+        width: 70%;
+        height: 1000px;
+        background-color: #EFECCA;
+      }
+      #droite {
+        background-color: #CEFFF8;
+        height: 1000px;
+        padding : 10px;
+        padding-left: 71%;
+      }
+      span{
+        padding : 5px;
+        margin: 10px;
+      }
+      input{
+        padding : 5px;
+        margin: 10px;
+      }
+      #droiteFils{
+        display: none;
+      }
+    </style>
+
+  <script src="jQuery.js"></script>
+  <script>
+    $(function() {
+  $('#droiteFils').fadeIn(1000);
+      var i=1;
+      var label;
+        //fonction click pour afficher l input du label 
+        $('#label').click(function(){
+          //ajouter l'attribut disabled lors du clic sur label
+          $('#zone').attr("disabled", true);
+          $('#bouton').attr("disabled", true);
+              $('#l').after('<div><div id=d'+i+'><p>Texte du label</p><input type="text" placeholder="label" id='+i+'><button id="OK">OK</button><br><button id="annuler">Annuler</button></div>' +
+                          '<div id=b'+i+'></div></div>');      
+               $('#b'+i).load("http://localhost/Act2/label.txt");
+               $('#l').next().hide().fadeIn(1000);
+               //mouseover les boutons ok et annuler
+                $('button').mouseenter(function(){
+                $(this).css('border-color','red');
+                })
+                $('button').mouseleave(function(){
+                $(this).css('border-color','');
+                })
+               //fonction pour valider le label
+                $('#OK').click(function(){
+                  label = $('#'+i).val();
+                  $('#gauche').append('<span id='+label+'>'+label+'  </span>'); 
+                  $('#d'+i).fadeOut(1000);
+                  $('#b'+i).fadeOut(1000);
+                  //rendre les boutons cliquable
+                  $('#zone').attr("disabled", false);
+                  $('#bouton').attr("disabled", false);
+                 })
+                //fonction pour annuler la valeur
+                 $('#annuler').click(function(){
+                 $('#'+i).val('');
+                 $('#d'+i).fadeOut(1000);
+                 $('#b'+i).fadeOut(1000);
+                 $('#zone').attr("disabled", false);
+                 $('#bouton').attr("disabled", false);
+             })
+
+            })
+            //fonction click pour afficher l input d'id
+            $('#zone').click(function(){
+              //ajouter l'attribut disabled lors du clic sur zone
+              $('#label').attr("disabled", true);
+              $('#bouton').attr("disabled", true);
+              $('#l').after('<div><div id=d'+i+'><p>id de la zone texte </p><input type="text" id='+i+'><button id="OK">OK</button><br><button id="annuler">Annuler</button></div>'+
+                              '<div id=b'+i+'></div></div>'); 
+              
+              $('#b'+i).load("http://localhost/Act2/zone.txt");
+              $('#l').next().hide().fadeIn(1000);
+                  //mouseover les boutons ok et annuler
+                  $('button').mouseenter(function(){
+                  $(this).css('border-color','red');
+                  })
+                  $('button').mouseleave(function(){
+                  $(this).css('border-color','');
+                  })
+                //fonction pour valider l'id
+                $('#OK').click(function(){
+                 var id= $('#'+i).val();
+                  $('#'+label).after('<input type="text"  id='+id+'><br>'); 
+                  $('#d'+i).fadeOut(1000);
+                  $('#b'+i).fadeOut(1000);
+                  //rendre les boutons cliquable
+                  $('#label').attr("disabled", false);
+                  $('#bouton').attr("disabled", false);
+                  i++;  
+                 })
+                //fonction pour annuler la valeur
+                 $('#annuler').click(function(){
+                 $('#'+i).val('');
+                 $('#d'+i).fadeOut(1000);
+                 $('#b'+i).fadeOut(1000);
+                 $('#label').attr("disabled", false);
+                 $('#bouton').attr("disabled", false);
+             })  
+            })
+            
+            $('#bouton').click(function(){
+              if(typeof $('#validation').val() == 'undefined'){
+                //ajouter l'attribut disabled lors du clic sur bouton
+                    $('#zone').attr("disabled", true);
+                    $('#label').attr("disabled", true);
+                    $('#l').after('<div><div id="bouton1"><p>Texte du bouton</p><input type="text" placeholder="nom du bouton" id='+i+'><button id="OK">OK</button><br><button id="annuler">Annuler</button></div>'+
+                                  '<div id="bouton2"></div></div>');
+
+                    $('#bouton2').load("http://localhost/Act2/bouton.txt");
+                    $('#l').next().hide().fadeIn(1000);
+                  //mouseover les boutons ok et annuler
+                    $('button').mouseenter(function(){
+                    $(this).css('border-color','red');
+                    })
+                    $('button').mouseleave(function(){
+                    $(this).css('border-color','');
+                    })
+                 
+                  $('#OK').click(function(){
+                    var nom= $('#'+i).val();
+                  $('#gauche').append('<button id="validation">'+nom+'</button>');
+                 $('#bouton1').fadeOut(1000);
+                 $('#bouton2').fadeOut(1000);
+                 //rendre les boutons cliquable
+                 $('#zone').attr("disabled", false);
+                  $('#label').attr("disabled", false);
+                 })
+                 //fonction pour annuler la valeur
+                 $('#annuler').click(function(){
+                 $('#bouton1').val('');
+                 $('#bouton1').fadeOut(1000);
+                 $('#bouton2').fadeOut(1000);
+                 $('#zone').attr("disabled", false);
+                 $('#label').attr("disabled", false);
+             })  
+                }else{
+              alert('vous avez deja ajouter le bouton de validation');
+            }
+            })
+            
+
+            $('button').mouseenter(function(){
+             $(this).css('border-color','red');
+          })
+            $('button').mouseleave(function(){
+             $(this).css('border-color','');
+          })
+          
+    });
+
+  </script>
+  </head>
+  <body>
+    <div id="gauche">
+    </div>
+    <div id="droite">
+      <div id="droiteFils">
+         Utilisez ces boutons pour créer votre formulaire<br><br>
+      <button id="label">Label</button>
+      <button id="zone">Zone de texte</button>
+      <button id="bouton">Bouton</button>
+      <hr id="l">
+      </div>
+     
+
+      </div>
+  </body>
+</html>

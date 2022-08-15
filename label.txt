@@ -1,1 +1,1 @@
-<p>Utilisez la zone de texte pour définir le texte à insérer dans le label, puis cliquer sur <b>OK</b> pour l'afficher dans la partie gauche de la page ou sur <b>Annuler</b> pour annuler l'insertion du label</p>
+<p>, puis cliquer sur <b>OK</b> pour l'afficher dans la partie gauche de la page ou sur <b>Annuler</b> pour annuler l'insertion du label</p>
